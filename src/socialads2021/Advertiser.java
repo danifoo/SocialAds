@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -18,16 +19,16 @@ import java.util.Set;
  */
 enum Subscription {Gold, Silver}; 
 public class Advertiser {
-    private String name; 
-    private String HQaddress; 
-    private String telephone;
-    private String sector;
-    private String VATnumber;
-    private Subscription sub;
-    private HashMap<String,Advertisement> uploadedAds;
+    protected String name; 
+    protected String HQaddress; 
+    protected String telephone;
+    protected String sector;
+    protected String VATnumber;
+    protected Subscription sub;
+    protected HashMap<String,Advertisement> uploadedAds;
     //private Administration admin;
 
-    private String refNum;
+    protected String refNum;
 
     //create advertiser object 
     public Advertiser() {
@@ -45,13 +46,58 @@ public class Advertiser {
         // stub- get details for an Advertiser 
         
         
-        name = "Coats Ltd";
-        telephone = "07384983844";
-        sector= "Fashion";
-        HQaddress= "B42 2SU";
-        VATnumber="GB1234567";
+        //name = "Coats Ltd";
+        //telephone = "07384983844";
+        //sector= "Fashion";
+        //HQaddress= "B42 2SU";
+        //VATnumber="GB1234567";
         sub=Subscription.Silver;
-        System.out.println("Sign up complete. Your unique reference number is"+ refNum);
+        
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+        	
+        	while (true) {
+        		System.out.println("Enter the name of the advertiser: ");
+    			name = scanner.nextLine();
+    			if(!name.isBlank()) {
+    				break;
+    			}else {
+    				System.out.println("The name filed can not be left empty.");	
+    			}
+        	}
+        	
+        	while (true) {
+        		System.out.println("Enter the telephone number of the advertiser: ");
+        		telephone = scanner.nextLine();
+    			if(!telephone.isBlank()) {
+    				break;
+    			}else {
+    				System.out.println("The telephone number filed can not be left empty.");	
+    			}
+        	}
+        	
+        	while (true) {
+        		System.out.println("Enter the HQ address of the advertiser: ");
+        		HQaddress = scanner.nextLine();
+    			if(!HQaddress.isBlank()) {
+    				break;
+    			}else {
+    				System.out.println("The HQ address filed can not be left empty.");	
+    			}
+        	}
+        	
+        	while (true) {
+        		System.out.println("Enter the VAT number of the advertiser: ");
+        		VATnumber = scanner.nextLine();
+    			if(!VATnumber.isBlank()) {
+    				break;
+    			}else {
+    				System.out.println("The VAT number filed can not be left empty.");	
+    			}
+        	}
+        	
+        }
+        //System.out.println("Sign up complete. Your unique reference number is "+ refNum);
          
     } 
     
