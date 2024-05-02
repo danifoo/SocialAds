@@ -11,12 +11,13 @@ public class AttractionAdvertiser extends Advertiser{
         
     	super.signUp();
         sector = "Attraction";
-        System.out.println("Sign up complete as an Attraction Advertiser. Your unique reference number is "+ refNum);
+        System.out.println("Sign up complete as a/an " + sector + "Advertiser. Your unique reference number is "+ refNum);
+        System.out.println("*******************************************");
     } 
     
     @Override
     public void display(){
-        System.out.println("Attraction Advertiser details: " +  refNum + "\n" + name +  "\n" + telephone + "\n" + HQaddress +"\n" + sub.toString()+"\n" + VATnumber + "*******************************************");
+        System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber + "\n*******************************************");
     }
     
 }

@@ -14,12 +14,14 @@ public class FoodAdvertiser extends Advertiser{
         
     	super.signUp();
         sector = "Food";
-        System.out.println("Sign up complete as a Food Advertiser. Your unique reference number is "+ refNum);
+        System.out.println("Sign up complete as a " + sector + "Advertiser. Your unique reference number is "+ refNum);
+        System.out.println("*******************************************");
     } 
     
     @Override
     public void display(){
-        System.out.println("Food Advertiser details: " +  refNum + "\n" + name +  "\n" + telephone + "\n" + HQaddress +"\n" + sub.toString()+"\n" + VATnumber + "*******************************************");
+        System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber + "\n*******************************************");
     }
+   
     
 }

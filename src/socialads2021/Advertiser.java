@@ -113,53 +113,56 @@ public class Advertiser implements Subject{
     }
     
     public void changeDetails(){
-        
-        System.out.println("Display new details after update");
         // get change details from advertiser and store
-        sub = Subscription.Gold;
-        HQaddress="B40 2FG";
         
+        //HQaddress="B40 2FG";
+    	
+    	sub = Subscription.Gold;
+    	System.out.println("\n*******************************************");
+        System.out.println("Subscription has been changed to gold");
         display();
-        System.out.println("*******************************************");
-        System.out.println("*******************************************");
+        //System.out.println("*******************************************");
+        //System.out.println("*******************************************");
         
         
     } 
     
     public void display(){
-        System.out.println("Advertiser details: " +  refNum + "\n" + name +  "\n" + telephone + "\n" + HQaddress + "\n" + sector +"\n" + sub.toString()+"\n" + VATnumber + "*******************************************");
+        System.out.println("Advertiser details: " +  refNum + "\n" + name +  "\n" + telephone + "\n" + HQaddress + "\n" + sector +"\n" + sub.toString()+"\n" + VATnumber + "\n*******************************************");
     }
-
+ 
     public void simulation() {
-        //addAdverts
-       addAdvertisement("Cashmere blue coats","Blue cashmere coats for sale");
-       addAdvertisement("Cashmere red coats","Red cashmere coats for sale");
-       addAdvertisement("Woollen blue coats ","Blue wool coats for sale");
-       addAdvertisement("Woollen white coats ","White wool coats last pieces");
-       addAdvertisement("Woollen red coats ","Red wool coats for sale");
-       addAdvertisement("Last chance","Blue thick coats for sale");
-       addAdvertisement("Last chance for scarves","Blue scarves for sale");
-       addAdvertisement("Autumn coats available","Seasonal coats available on website");
-       addAdvertisement("Winter coats available","Thick coats available on website");
-       addAdvertisement("Last chance for skiing coats","Skiing coats available on website");
+       //addAdverts
+       addAdvertisement("ad 1","ad 1 text");
+       addAdvertisement("ad 2","ad 2 text");
+       addAdvertisement("ad 3","ad 3 text");
+       addAdvertisement("ad 4","ad 4 text");
+       addAdvertisement("ad 5","ad 5 text");
+       addAdvertisement("ad 6","ad 6 text");
+       addAdvertisement("ad 7","ad 7 text");
+       addAdvertisement("ad 8","ad 8 text");
+       addAdvertisement("ad 9","ad 9 text");
        
-       //advert should not be uploaded; max limit reached
-       addAdvertisement("Last chance for blue skiing coats now","Skiing coats available on website");
+       addAdvertisement("1st ad with foul term","this is a test ad text with a foul1 term");
        
-       //display all uploaded advertisements
-       getUploadedAds();
-        
+       addAdvertisement("ad 10","ad 10 text");
+       addAdvertisement("ad 11","ad 11 text");
+       
        //change subscription type and HQAddress
        changeDetails(); 
        
        //Attempt adding an advert after the subscription type is changed
-       addAdvertisement("Last chance for blue skiing coats","Skiing coats available on website");
+       addAdvertisement("ad 12","ad 12 text");
+       addAdvertisement("ad 13","ad 13 text");
        
+       //display all uploaded advertisements
+       getUploadedAds();
+        
        //Edit the text of an existing advert
-       editAdvertisement("Winter coats available","Cozy coats available on website");
+       editAdvertisement("ad 1","ad 1 text edited");
        
        //Delete an existing advertisement
-        deleteAdvertisement("Autumn coats available"); 
+       deleteAdvertisement("ad 2"); 
        
        //Display advertisements after update/delete
        getUploadedAds();
@@ -186,7 +189,9 @@ public class Advertiser implements Subject{
             Advertisement newAd=new Advertisement(title, adText);
             if(this.notify(newAd)) {
             	uploadedAds.put(title,newAd);
-                System.out.println("New advert titled "+title+" uploaded.");	
+            	System.out.println("New Ad title: " + newAd.getTitle());
+				System.out.println("New Ad text: " + newAd.getText());
+                System.out.println("Status: New advertisement titled "+title+" uploaded.\n");	
             }
         }
     }
@@ -194,14 +199,14 @@ public class Advertiser implements Subject{
     public void getUploadedAds() {
         Set set = uploadedAds.entrySet();
         Iterator i = set.iterator();
-        
+        System.out.println("\n*******************************************\nAll the uploaded ads of " +name+ ": ");
         while (i.hasNext())
         {
             Map.Entry me = (Map.Entry)i.next();
             uploadedAds.get(me.getKey()).display();
         }
             
-        System.out.println();
+        System.out.println("\n*******************************************\n");
     }
     public void editAdvertisement(String title,String newText){
         Advertisement toEdit=uploadedAds.get(title);
@@ -212,16 +217,6 @@ public class Advertiser implements Subject{
     public void deleteAdvertisement(String title){
         uploadedAds.remove(title);
         System.out.println("Advert titled "+title+" removed from database");
-    }
-    
-    @Override
-    public void attach(Observer observer) {
-    	observers.add(observer);
-    }
-    
-    @Override
-    public void detach(Observer observer) {
-    	observers.remove(observer);
     }
     
     @Override

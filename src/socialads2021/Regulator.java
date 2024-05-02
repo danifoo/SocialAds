@@ -27,8 +27,10 @@ public class Regulator implements Observer{
 	public boolean update(Advertisement ad) {
 		for(String foulTerm: foulTerms) {
 			if(ad.getText().contains(foulTerm)) {
-				System.out.println("The Advertisement text contains + " + "\"" + foulTerm + "\". This is a foul term.");
-				System.out.println("Advertisement wil not be uploaded.");
+				System.out.println("Ad title: " + ad.getTitle());
+				System.out.println("Ad text: " + ad.getText());
+				System.out.println("Status: The Advertisement text contains " + "\"" + foulTerm + "\". This is a foul term.");
+				System.out.println("Advertisement wil not be uploaded.\n");
 				return false;
 			}
 		}

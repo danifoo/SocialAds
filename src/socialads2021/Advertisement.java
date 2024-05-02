@@ -31,7 +31,7 @@ public class Advertisement {
     }
 
     public void display(){
-        System.out.println(title +  "\n" + adText +"\n"); //Find out more at: "+businessPostCode +"\nFor just: " + "£"+ productPrice + "\n" + "*******************************************");
+        System.out.println("Title: " + title +  "\nAd text: " + adText +"\n"); //Find out more at: "+businessPostCode +"\nFor just: " + "£"+ productPrice + "\n" + "*******************************************");
     }
 
     void setText(String newText) {
