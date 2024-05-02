@@ -2,8 +2,8 @@ package socialads2021;
 
 public class AttractionAdvertiser extends Advertiser{
     //create advertiser object 
-    public AttractionAdvertiser() {
-        super();
+    public AttractionAdvertiser(Administration admin) {
+        super(admin);
     }
     
     @Override
@@ -17,7 +17,9 @@ public class AttractionAdvertiser extends Advertiser{
     
     @Override
     public void display(){
-        System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber + "\n*******************************************");
+    	System.out.println("*******************************************\nAdvertiser detail\n*******************************************");
+    	System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber);
+        System.out.println("*******************************************");
     }
     
 }

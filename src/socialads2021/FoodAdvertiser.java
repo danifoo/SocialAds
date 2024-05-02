@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class FoodAdvertiser extends Advertiser{
 	
     //create advertiser object 
-    public FoodAdvertiser() {
-        super();
+    public FoodAdvertiser(Administration admin) {
+        super(admin);
     }
     
     @Override
@@ -20,7 +20,9 @@ public class FoodAdvertiser extends Advertiser{
     
     @Override
     public void display(){
-        System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber + "\n*******************************************");
+    	System.out.println("*******************************************\nAdvertiser detail\n*******************************************");
+    	System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber);
+        System.out.println("*******************************************");
     }
    
     

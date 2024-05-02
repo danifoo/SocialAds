@@ -1,5 +1,5 @@
 package socialads2021;
 
 public interface Subject {
-	public boolean notify(Advertisement ad);
+	public boolean notify(Advertisement advertisement);
 }

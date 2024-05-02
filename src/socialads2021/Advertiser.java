@@ -27,33 +27,25 @@ public class Advertiser implements Subject{
     protected String VATnumber;
     protected Subscription sub;
     protected HashMap<String,Advertisement> uploadedAds;
-    private List<Observer> observers;
-    //private Administration admin;
+    protected Administration admin;
 
     protected String refNum;
+    
+    //protected List<Observer> observers;
 
     //create advertiser object 
-    public Advertiser() {
+    public Advertiser(Administration admin) {
         uploadedAds = new HashMap<String,Advertisement>();
-        observers = new ArrayList<>();
+        //observers = new ArrayList<>();
+        this.admin = admin;
     }
     
     public void signUp(){
         
-        // sample details from representative and store in Advertiser
-        
         System.out.println("*******************************************");
         System.out.println("Input Details for a silver Advertiser ");
         System.out.println("*******************************************");
-        
-        // stub- get details for an Advertiser 
-        
-        
-        //name = "Coats Ltd";
-        //telephone = "07384983844";
-        //sector= "Fashion";
-        //HQaddress= "B42 2SU";
-        //VATnumber="GB1234567";
+
         sub=Subscription.Silver;
         
         
@@ -113,22 +105,19 @@ public class Advertiser implements Subject{
     }
     
     public void changeDetails(){
-        // get change details from advertiser and store
-        
-        //HQaddress="B40 2FG";
     	
     	sub = Subscription.Gold;
     	System.out.println("\n*******************************************");
         System.out.println("Subscription has been changed to gold");
-        display();
-        //System.out.println("*******************************************");
-        //System.out.println("*******************************************");
-        
+        System.out.println("*******************************************");
+        display();       
         
     } 
     
     public void display(){
-        System.out.println("Advertiser details: " +  refNum + "\n" + name +  "\n" + telephone + "\n" + HQaddress + "\n" + sector +"\n" + sub.toString()+"\n" + VATnumber + "\n*******************************************");
+    	System.out.println("*******************************************\nAdvertiser detail\n*******************************************");
+    	System.out.println("Name: " + name + "\nSector: " + sector + "\nRef number: " + refNum +  "\nTelephone: " + telephone + "\nHQaddress: " + HQaddress +"\nSubscription: " + sub.toString()+"\nVAT: " + VATnumber);
+        System.out.println("*******************************************");
     }
  
     public void simulation() {
@@ -166,14 +155,14 @@ public class Advertiser implements Subject{
        
        //Display advertisements after update/delete
        getUploadedAds();
-       
    
        //unsubscribe from Social Ads
-       //unsubscribe();
+       unsubscribe();
    }
  
    void unsubscribe() {
-	  System.out.println("Advertiser "+refNum+" removed"+"\n"+"*******************************************");
+	  //System.out.println("Advertiser "+refNum+" removed"+"\n"+"*******************************************");
+	  admin.unsubscribe(refNum);
    }
    
    public void addAdvertisement (String title,String adText){
@@ -200,29 +189,34 @@ public class Advertiser implements Subject{
         Set set = uploadedAds.entrySet();
         Iterator i = set.iterator();
         System.out.println("\n*******************************************\nAll the uploaded ads of " +name+ ": ");
+        System.out.println("*******************************************");
         while (i.hasNext())
         {
             Map.Entry me = (Map.Entry)i.next();
             uploadedAds.get(me.getKey()).display();
         }
             
-        System.out.println("\n*******************************************\n");
+        System.out.println("*******************************************\n");
     }
     public void editAdvertisement(String title,String newText){
         Advertisement toEdit=uploadedAds.get(title);
         toEdit.setText(newText);
-        System.out.println("Advert updated as follows: ");
+        System.out.println("*******************************************");
+        System.out.println("Advert updated");
+        System.out.println("*******************************************");
         uploadedAds.get(title).display();
     }
     public void deleteAdvertisement(String title){
         uploadedAds.remove(title);
+        System.out.println("*******************************************");
         System.out.println("Advert titled "+title+" removed from database");
+        System.out.println("*******************************************\n");
     }
     
     @Override
-    public boolean notify(Advertisement ad) {
+    public boolean notify(Advertisement advertisement) {
     	Regulator regulator =  Regulator.getInstance();
-    	return regulator.update(ad);
+    	return regulator.update(advertisement);
     }    
     
 }

@@ -50,10 +50,10 @@ public class Administration {
 			
 			//create Advertiser object using constructor and based user's choice
 			if(advertiserType.equals("1")) {
-				advertiser = new FoodAdvertiser();
+				advertiser = new FoodAdvertiser(this);
 				
 			}else if(advertiserType.equals("2")) {
-				advertiser = new AttractionAdvertiser();
+				advertiser = new AttractionAdvertiser(this);
 			}
 	        
 	        //set reference number
@@ -63,8 +63,10 @@ public class Administration {
 	        advertiser.signUp();
 	        
 	        
-	       advertisers.put(advertiser.getRefNum(),advertiser);
-	
+	        advertisers.put(advertiser.getRefNum(),advertiser);
+	        
+	        display();
+	        
 	        //Simulate Advertiser activity
 	        advertiser.simulation();
         
@@ -80,9 +82,10 @@ public class Administration {
         
     }
     public void display(){
+        
+        System.out.println("*******************************************");
         System.out.println("Display Advertisers");
-        System.out.println("*******************************************");
-        System.out.println("*******************************************");
+        System.out.println("*******************************************\n");
         Set set = advertisers.entrySet();
         Iterator i = set.iterator();
         
@@ -105,10 +108,9 @@ public class Administration {
         
     }
     public void unsubscribe(String refNum){
-        System.out.println("Advertisers");
         System.out.println("*******************************************");
+        System.out.println("Advertiser removed");
         System.out.println("*******************************************");
-        advertisers.get(refNum).unsubscribe();
         advertisers.remove(refNum);      
     }
     public static void main(String[] args){
@@ -116,7 +118,7 @@ public class Administration {
             Administration  admin = new Administration();
             
             admin.signUp();
-            admin.display();    
+            admin.display(); 
     }
 }
 
