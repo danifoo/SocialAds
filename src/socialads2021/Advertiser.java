@@ -8,6 +8,7 @@ package socialads2021;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ import java.util.Set;
  * @author minut
  */
 enum Subscription {Gold, Silver}; 
-public class Advertiser {
+public class Advertiser implements Subject{
     protected String name; 
     protected String HQaddress; 
     protected String telephone;
@@ -26,6 +27,7 @@ public class Advertiser {
     protected String VATnumber;
     protected Subscription sub;
     protected HashMap<String,Advertisement> uploadedAds;
+    private List<Observer> observers;
     //private Administration admin;
 
     protected String refNum;
@@ -33,6 +35,7 @@ public class Advertiser {
     //create advertiser object 
     public Advertiser() {
         uploadedAds = new HashMap<String,Advertisement>();
+        observers = new ArrayList<>();
     }
     
     public void signUp(){
@@ -164,12 +167,13 @@ public class Advertiser {
    
        //unsubscribe from Social Ads
        //unsubscribe();
-    }
+   }
  
    void unsubscribe() {
-        System.out.println("Advertiser "+refNum+" removed"+"\n"+"*******************************************");
-    }
-    public void addAdvertisement (String title,String adText){
+	  System.out.println("Advertiser "+refNum+" removed"+"\n"+"*******************************************");
+   }
+   
+   public void addAdvertisement (String title,String adText){
         if (sub==Subscription.Gold && uploadedAds.entrySet().size()>=20){
             System.out.println("Sorry you reached the max limit (20) of uploaded adverts this month given your Gold subscription.");
             //System.exit(1);
@@ -180,8 +184,10 @@ public class Advertiser {
         }
         else{
             Advertisement newAd=new Advertisement(title, adText);
-            uploadedAds.put(title,newAd);
-            System.out.println("New advert titled "+title+" uploaded.");
+            if(this.notify(newAd)) {
+            	uploadedAds.put(title,newAd);
+                System.out.println("New advert titled "+title+" uploaded.");	
+            }
         }
     }
 
@@ -207,6 +213,22 @@ public class Advertiser {
         uploadedAds.remove(title);
         System.out.println("Advert titled "+title+" removed from database");
     }
+    
+    @Override
+    public void attach(Observer observer) {
+    	observers.add(observer);
+    }
+    
+    @Override
+    public void detach(Observer observer) {
+    	observers.remove(observer);
+    }
+    
+    @Override
+    public boolean notify(Advertisement ad) {
+    	Regulator regulator =  Regulator.getInstance();
+    	return regulator.update(ad);
+    }    
     
 }
 

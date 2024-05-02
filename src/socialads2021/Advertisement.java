@@ -37,6 +37,9 @@ public class Advertisement {
     void setText(String newText) {
         this.adText=newText;
     }
-
+    
+    public String getText() {
+        return this.adText;
+    }
     
 }
