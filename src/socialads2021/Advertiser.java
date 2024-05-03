@@ -132,7 +132,7 @@ public class Advertiser implements Subject{
        addAdvertisement("ad 8","ad 8 text");
        addAdvertisement("ad 9","ad 9 text");
        
-       addAdvertisement("1st ad with foul term","this is a test ad text with a foul1 term");
+       addAdvertisement("1st ad with foul term","this is a test ad text with a very appaling term");
        
        addAdvertisement("ad 10","ad 10 text");
        addAdvertisement("ad 11","ad 11 text");

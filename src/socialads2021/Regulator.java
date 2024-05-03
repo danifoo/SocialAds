@@ -9,10 +9,11 @@ public class Regulator implements Observer{
 	
 	private Regulator() {
 		foulTerms = new ArrayList<>();
-		foulTerms.add("foul1");
-		foulTerms.add("second foul");
-		foulTerms.add("foul 3");
-		foulTerms.add("the 4th foul term");
+		foulTerms.add("bad");
+		foulTerms.add("appaling");
+		foulTerms.add("ugly");
+		foulTerms.add("useless");
+		foulTerms.add("low quality");
 	}
 	
 	public static Regulator getInstance() {
