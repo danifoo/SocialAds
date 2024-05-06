@@ -113,6 +113,7 @@ public class Administration {
         System.out.println("*******************************************");
         advertisers.remove(refNum);      
     }
+    
     public static void main(String[] args){
             
             Administration  admin = new Administration();
@@ -120,5 +121,6 @@ public class Administration {
             admin.signUp();
             admin.display(); 
     }
+    
 }
 

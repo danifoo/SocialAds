@@ -31,12 +31,11 @@ public class Advertiser implements Subject{
 
     protected String refNum;
     
-    //protected List<Observer> observers;
+    protected Observer observer;
 
     //create advertiser object 
     public Advertiser(Administration admin) {
         uploadedAds = new HashMap<String,Advertisement>();
-        //observers = new ArrayList<>();
         this.admin = admin;
     }
     
@@ -215,20 +214,20 @@ public class Advertiser implements Subject{
     
     @Override
     public boolean notify(Advertisement advertisement) {
-    	Regulator regulator =  Regulator.getInstance();
-    	return regulator.update(advertisement);
+    	attach(Regulator.getInstance());
+    	return observer.update(advertisement);
     }  
     
-    /**
+    
     @Override
 	public void attach(Observer observer){
-		observers.add(observer);
+		this.observer = observer;
     }
     
    	@Override
-	public void detach(Observer observer){
-		observers.remove(observer);
+	public void detach(){
+   		observer = null;
 	}
-	**/
+	
 }
 
